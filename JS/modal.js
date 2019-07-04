@@ -1,10 +1,18 @@
 /*fonction du modal pour sa fermeture*/
-var modal= document.getElementById("magasin");
+var messagebtn= document.getElementById("messagebtn");
+var modal= document.getElementById("alertmessage");
 var span = document.getElementById("close");
+var i=0;
 
-magasinbtn.onclick=function(){
-  modal.style.display="block";
+messagebtn.onclick=function(){
 
+i++;
+  console.log(i);
+  if(i==3)
+  {
+    modal.style.display="block";
+    i=0;
+  }
 }
 
 span.onclick = function() {
