@@ -12,7 +12,7 @@
  * @version  1.0.4
  * @link     http://github.com/j7mbo/twitter-api-php
  */
-class TwitterAPIExchange /*nom du fichier*/
+class TwitterAPIExchange
 {
     /**
      * @var string

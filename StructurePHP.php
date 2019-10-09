@@ -1,6 +1,7 @@
 <?php
 /*Inclure tout les fichiers PHP besoins*/
 require_once('TwitterAPIExchange.php');
+/*require_once("mot.php");*/
 
 
 $settings =
@@ -11,35 +12,25 @@ $settings =
 'consumer_secret' => "CrcVV0mLJ8NZYrU3ZQfBR2psgeQJSleWhDwLknFCwxcJO6V729"
 ];
 
-$url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
+
 $url2= "https://api.twitter.com/1.1/statuses/update.json";
-$requestMethod = "GET";
+
 $requestMethod2= "POST";
-$postfield= ["status"=>"Coucou :)"];
-$getfield = '?screen_name=lalalan48806413&count=5';
+
+if (isset($_POST['tweet'])){
+$postfield= ['status'=>$_POST['tweet']];
+
+
 $twitter = new TwitterAPIExchange($settings);
 
 
-/*echo $twitter->buildOauth($url2, $requestMethod2)            /*POST   TWEET*/
-             /*->setPostfields($postfield)
-             ->performRequest();*/
+$twitter->buildOauth($url2, $requestMethod2)            /*POST   TWEET*/
+             ->setPostfields($postfield)
+             ->performRequest();
 
-
-
-$tabreturn =   json_decode(                                             /*GET TWEET*/
-                $twitter->setGetfield($getfield)
-                ->buildOauth($url, $requestMethod)
-                ->performRequest(), $assoc=true);
-
-if (array_key_exists("error",  $tabreturn))                             /*MESSAGE DERREUR*/
-{
-echo "Twitter issue is real, error message :".$tabreturn["errors"];
-exit();
 }
-/*METTRE EN FORME LE JSON*/
-echo "<pre>";
-/*AFFICHER TOUT LE TABLEAU*/
-print_r($tabreturn);
+
+
 
 
 
